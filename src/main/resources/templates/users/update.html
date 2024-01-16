@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+  <meta charset="UTF-8">
+  <title>Update</title>
+</head>
+<body>
+<h1>Update user</h1>
+  <form th:action="@{/users/update}"  th:object="${user}" method="post">
+
+    <label for="id">Id:</label>
+    <input type="text" id="id" name="id" required readonly th:value="${user.id}" >
+
+    <br>
+    <label for="name">Name:</label>
+    <input type="text" id="name" th:field="*{name}" th:value="${user.name}" >
+    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" >Error name</div>
+
+    <br>
+    <label for="age">Age:</label>
+    <input type="number" id="age" th:field="*{age}" th:value="${user.age}">
+    <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}" >Error age</div>
+
+    <br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
